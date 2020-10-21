@@ -1,0 +1,1 @@
+worker: python task_dispatcher.py
