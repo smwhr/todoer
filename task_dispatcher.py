@@ -95,11 +95,8 @@ class TaskDispatcherBot(discord.Client):
                                                 )
                                             )
                                           ).all()
-                tasked_mentions = ", ".join([f'{m.mention}' for m in message.mentions][:-1])
-                if len(msg.mentions) > 1:
-                    last_tasked_mention = msg.mentions[-1].mention
-                    tasked_mentions += f" or {last_tasked_mention}"
-                await message.channel.send(f"{len(tasks)} are awaiting to be done")
+                tasked_mentions = list_or([u.mention for u in message.mentions])
+                await message.channel.send(f"{len(tasks)} are awaiting to be done by {tasked_mentions}")
                 display_tasks(tasks)
 
 
