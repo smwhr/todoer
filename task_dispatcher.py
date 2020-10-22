@@ -84,7 +84,7 @@ class TaskDispatcherBot(discord.Client):
                 tasks = session.query(Task).filter(
                                             Task.status == "TODO"
                                           ).all()
-                await message.channel.send(f"{len(tasks)} are awaiting to be done")
+                await message.channel.send(f"{len(tasks)} tasks are awaiting to be done")
                 await display_tasks(tasks)
             elif len(message.mentions) > 0:
                 tasks = session.query(Task).filter(
@@ -96,8 +96,8 @@ class TaskDispatcherBot(discord.Client):
                                             )
                                           ).all()
                 tasked_mentions = list_or([u.mention for u in message.mentions])
-                await message.channel.send(f"{len(tasks)} are awaiting to be done by {tasked_mentions}")
-                display_tasks(tasks)
+                await message.channel.send(f"{len(tasks)} tasks are awaiting to be done by {tasked_mentions}")
+                await display_tasks(tasks)
 
 
     async def on_reaction_add(self, reaction, user):
