@@ -87,7 +87,7 @@ class TaskDispatcherBot(discord.Client):
                 await message.channel.send(f"{len(tasks)} are awaiting to be done")
                 await display_tasks(tasks)
             elif len(message.mentions) > 0:
-                tasks = session.query(Task).join(user_groups).filter(
+                tasks = session.query(Task).filter(
                                             Task.status == "TODO"
                                           ).filter(
                                             Task.user_collection.any(User.mention.in_(
